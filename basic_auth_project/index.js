@@ -2,9 +2,9 @@
 const express = require("express");
 var path = require('path');
 
-const app = express();
+const app = express(); //wymagania modułu (frameworku)
 
-function authentication(req, res, next) {
+function authentication(req, res, next) {  //funkcja określająca co się dzieję po udanym i nieudanym logowaniu
 	var authheader = req.headers.authorization;
 	console.log(req.headers);
 
@@ -18,7 +18,7 @@ function authentication(req, res, next) {
 	var auth = new Buffer.from(authheader.split(' ')[1],
 	'base64').toString().split(':');
 	var user = auth[0];
-	var pass = auth[1];
+	var pass = auth[1]; //zapisanie w zmiennej hasła i loginu
 
 	if (user == '' && pass == '') {
 
@@ -39,5 +39,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Server setup
 app.listen((3000), () => {
-	console.log("Server is Running");
+	console.log("Server is Running"); //działanie na porcie 3000 + wyświetlenie logu w konsoli
 })
